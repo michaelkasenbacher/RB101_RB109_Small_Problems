@@ -1,0 +1,118 @@
+1. 
+def ascii_value(input)
+  value = input.chars.map {|char| char.ord}
+  value.sum
+end
+
+p ascii_value('Four score') == 984
+p ascii_value('Launch School') == 1251
+p ascii_value('a') == 97
+p ascii_value('') == 0
+
+2.
+def time_of_day(time)
+  days = time.abs / (60 * 24)
+    if days >= 1
+      hours = (time.abs - (60 * 24 * days)) / 60
+    else
+      hours = time.abs / 60
+    end
+  minutes = time.abs % 60
+    
+  hours = 23 - hours if time < 0
+  minutes = 60 - minutes if time < 0
+
+  display_time = "#{"%02d" % hours}:#{"%02d" % minutes}"
+  display_time
+end
+
+p time_of_day(0)
+p time_of_day(-3)
+p time_of_day(35)
+p time_of_day(-1437)
+p time_of_day(3000)
+p time_of_day(800) == "13:20"
+p time_of_day(-4231)
+
+2. with .devmod
+
+def time_of_day(num)
+
+  days = num.abs.divmod(60 * 24)
+  hours_and_minutes = days[1].divmod(60)
+  if num < 0
+    hours_and_minutes[0] = 23 - hours_and_minutes[0]
+    hours_and_minutes[1] = 60 - hours_and_minutes[1]
+  else
+  end
+  display_time = "#{"%02d" %hours_and_minutes[0].to_i}:#{"%02d" %hours_and_minutes[1].to_i}"
+end
+
+p time_of_day(0) == "00:00"
+p time_of_day(-3)
+p time_of_day(35)
+p time_of_day(-1437) == "00:03"
+p time_of_day(3000)
+p time_of_day(800) == "13:20"
+p time_of_day(-4231) == "01:29"
+
+3.
+def after_midnight(str)
+  arr = str.partition(":")
+  minutes = arr[0].to_i * 60 + arr[2].to_i
+  if minutes >= 1440
+    minutes = 0
+  else
+    minutes
+  end
+end
+
+p after_midnight('12:34')
+p after_midnight('00:00')
+p after_midnight('24:00')
+
+def before_midnight(str)
+  arr = str.partition(":")
+  minutes = 1440 - (arr[0].to_i * 60 + arr[2].to_i)
+  if minutes >= 1440
+    minutes = 0
+  else
+    minutes
+  end
+end
+
+p before_midnight('12:34')
+p before_midnight('00:00')
+p before_midnight('24:00')
+
+4.
+def swap_first_last_characters(word)
+word[0], word[-1] = word[-1], word[0]
+word
+end
+
+def swap(words)
+result = words.split.map do |word|
+  swap_first_last_characters(word)
+end
+result.join(" ")
+end
+
+
+p swap('Oh what a wonderful day it is')
+
+4. alternative solution
+def swap(string)
+
+  string.split.each {|word| word[0], word[-1] = word[-1], word[0]}.join(" ")
+  end
+
+p swap('Oh what a wonderful day it is')
+
+5.
+def cleanup(string)
+  string.gsub(/\W/, " ").gsub(/ +/, " ")
+end
+
+p cleanup("---what's my +*& line?") == ' what s my line '
+
