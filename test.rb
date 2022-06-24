@@ -1,5 +1,19 @@
-def cleanup(string)
-  string.gsub(/\W/, " ").gsub(/ +/, " ")
+def triangle(num)
+  star = "*"
+  counter = 0
+
+  while counter <= num
+    puts (star * counter).rjust(num)
+    counter += 1
+  end
+
 end
 
-p cleanup("---what's my +*& line?") == ' what s my line '
+
+triangle(5)
+
+#     *
+#    **
+#   ***
+#  ****
+# *****
