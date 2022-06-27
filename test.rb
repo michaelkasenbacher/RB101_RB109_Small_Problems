@@ -1,19 +1,9 @@
-def triangle(num)
-  star = "*"
-  counter = 0
-
-  while counter <= num
-    puts (star * counter).rjust(num)
-    counter += 1
-  end
-
+def penultimate(string)
+  arr = string.split()
+  arr[-2]
 end
 
 
-triangle(5)
+p penultimate('last word') == 'last'
+p penultimate('Launch School is great!') == 'is'
 
-#     *
-#    **
-#   ***
-#  ****
-# *****
