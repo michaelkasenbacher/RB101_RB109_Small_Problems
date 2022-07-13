@@ -21,5 +21,42 @@ crunch('ggggggggggggggg')
 crunch('a')
 crunch('')
 
-Why does this p what it does?
+# Why does this p what it does?
 p [1,2,3].map {|num| num << num}
+
+
+# Why does is there an error message when within the while loop  
+# `<main>': undefined method `<' for nil:NilClass (NoMethodError)
+
+a = [1,5,9]
+b = [2,6,8]
+
+result = []
+counter = 0
+
+while counter <= a.size
+  
+  if a[counter] < b[counter]
+    result << a[counter]
+  else
+    result << b[counter]
+  end
+  counter += 1
+end
+
+p result
+
+# But no error message without the while loop? 
+
+a = [1,5,9]
+b = [2,6,8]
+counter = 0
+result = []
+
+if a[counter].to_i < b[counter].to_i
+  result << a[counter]
+else
+  result << b[counter]
+end
+
+p result
